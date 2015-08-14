@@ -10,7 +10,7 @@
 
 * Version:           0.1
 
-* Author:            Vajrasar Goswami | imakewp.com
+* Author:            Vajrasar Goswami | Obbserv Online Services Pvt. Ltd.
 
 */
 
@@ -28,12 +28,10 @@ add_action( 'wp_enqueue_scripts', 'nobsmail_enqueue_scripts' );
 function lets_catch_emails() {
 	?>
 	<div id="catch-email">
-		<!-- If you want to display Name field as well --
-		<p>
+		<!--<p>
 			<label for="name"/>Name:</label>
 			<input type="text" name="name" id="subs-name"/>
-		</p>
-		-->
+		</p>-->
 		
 		<p>
 			<label for="email"/>Email:</label>
@@ -67,9 +65,9 @@ function vg_no_bs_mail_func() {
 	}
 	*/ 
 
-	if ( $usremail == null || empty( $usremail ) ) {
+	if ( ( $usremail == null ) || ( empty( $usremail ) ) || ( !is_email( $usremail ) ) ) {
 
-		echo "Email Empty." . "<br />";
+		echo "Email Empty or invalid" . "<br />";
 		$weshoulddie = 1;
 
 	}
@@ -92,7 +90,7 @@ function vg_no_bs_mail_func() {
 
 		    wp_mail( $usremail, 'Welcome to BCM!', 'You will recieve updates from now on!' );
 
-		    echo "User created Succesfully";
+		    echo "You've succesfully subscribed.";
 
 
 		} else {
@@ -114,7 +112,3 @@ function vg_no_bs_mail_func() {
 add_action( 'wp_ajax_nopriv_vg_no_bs_mail_func', 'vg_no_bs_mail_func' ); // for ajax
 
 add_action( 'wp_ajax_vg_no_bs_mail_func', 'vg_no_bs_mail_func' ); // for ajax
-
-
-
-
